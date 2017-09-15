@@ -13,12 +13,12 @@ class Figure implements FigureInterface
     /**
      * @var int
      */
-    private $x;
+    private $x = 1;
 
     /**
      * @var int
      */
-    private $y;
+    private $y = 1;
 
     /**
      * @return int
@@ -70,13 +70,5 @@ class Figure implements FigureInterface
         $this->setY(intval($posY));
 
         return $this;
-    }
-
-    /**
-     * Abstract method to override
-     * @return mixed
-     */
-    public function draw()
-    {
     }
 }

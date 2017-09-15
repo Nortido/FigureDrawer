@@ -39,9 +39,4 @@ interface FigureInterface
      * @return $this
      */
     public function setPosition($posX, $posY);
-
-    /**
-     * @return mixed
-     */
-    public function draw();
 }

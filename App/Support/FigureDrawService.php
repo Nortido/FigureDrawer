@@ -6,20 +6,32 @@
 namespace App\Support;
 
 
+use App\Core\Interfaces\FigureInterface;
 use App\Core\Interfaces\Service;
 
 class FigureDrawService implements Service
 {
     /**
-     * @param array $args
+     * @param FigureInterface $figure
+     * @param string $type
+     *
      * @return array
      */
-    static function run($options)
+    static function run($figure, $type)
     {
-        if (isset($options['type'])) {
-            echo "Drawing" . PHP_EOL;
+        if (isset($type)) {
+            if ($type == "text") {
+                //TODO: Use a drawing library for text
+            }
+            elseif ($type == "console") {
+                //TODO: Use a drawing library for text
+            }
 
-            //TODO: Use a drawing library for that type of picture
+            elseif ($type == "png") {
+                //TODO: Use a drawing library for text
+            } else {
+                throw new \Exception('This type of drawing does not support');
+            }
         }
     }
 }

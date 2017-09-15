@@ -13,12 +13,7 @@ class Circle extends Figure
     /**
      * @var int
      */
-    private $radius;
-
-    public function __construct($radius)
-    {
-        $this->setRadius($radius);
-    }
+    private $radius = 1;
 
     /**
      * @return int
@@ -38,10 +33,5 @@ class Circle extends Figure
         $this->radius = intval($radius);
 
         return $this;
-    }
-
-    public function draw()
-    {
-
     }
 }

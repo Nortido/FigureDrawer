@@ -9,9 +9,10 @@ namespace App\Core\Interfaces;
 interface Service
 {
     /**
+     * @param FigureInterface $figure
      * @param array $options
      *
      * @return array
      */
-    static function run($options);
+    static function run($figure, $options);
 }

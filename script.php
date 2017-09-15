@@ -7,12 +7,11 @@ checkParams($argv);
 
 require "bootstrap.php";
 
-$options = isset($argv[2]) ? explode(",", $argv[2]) : [];
-$options['type'] = "text";
+$options['size'] = isset($argv[2]) ? $argv[2] : null;
+$options['position'] = isset($argv[3]) ? $argv[3] : null;
+$options['type'] = isset($argv[4]) ? $argv[4] : "text";
 
-if (isset($argv[3])) {
-    $options['type'] = $argv[3];
-}
+$options = array_filter($options);
 
 drawFigure($argv[1], $options);
 /**
@@ -24,6 +23,22 @@ function checkParams($args)
         echo "Please enter figure name as argument" . PHP_EOL;
         exit;
     }
+
+    if (isset($args[2])) {
+        foreach (explode(",", $args[2]) as $value) {
+            if ($value <= 0) {
+                echo "All sizes should have a positive value" . PHP_EOL;
+                exit;
+            }
+        }
+    }
+
+    if (isset($args[3])) {
+        if (count(explode(",", $args[3])) != 2) {
+            echo "Position should have two values for X and Y" . PHP_EOL;
+            exit;
+        }
+    }
 }
 
 /**
@@ -32,13 +47,13 @@ function checkParams($args)
  */
 function drawFigure($name, $options = [])
 {
-        $controllerName = "App\Controllers\\" . ucfirst($name) . "Controller";
+    $controllerName = "App\Controllers\\" . ucfirst($name) . "Controller";
 
-        if (class_exists($controllerName)) {
-            /** @var \App\Core\Interfaces\ControllerInterface $controller */
-            $controller = new $controllerName();
-            return $controller->process($options);
-        } else {
-            echo "This figure is not supported" . PHP_EOL;
-        }
+    if (class_exists($controllerName)) {
+        /** @var \App\Core\Interfaces\ControllerInterface $controller */
+        $controller = new $controllerName();
+        return $controller->process($options);
+    } else {
+        echo "This figure is not supported" . PHP_EOL;
+    }
 }

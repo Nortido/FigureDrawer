@@ -13,18 +13,12 @@ class Rectangle extends Figure
     /**
      * @var int
      */
-    private $width;
+    private $width = 1;
 
     /**
      * @var int
      */
-    private $height;
-
-    public function __construct($width, $height)
-    {
-        $this->setWidth($width);
-        $this->setHeight($height);
-    }
+    private $height = 1;
 
     /**
      * @return int
@@ -64,11 +58,5 @@ class Rectangle extends Figure
         $this->height = intval($height);
 
         return $this;
-    }
-
-
-    public function draw()
-    {
-
     }
 }
